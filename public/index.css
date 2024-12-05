@@ -1,0 +1,191 @@
+/* General styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #f3f4f7, #e5eaf5); /* Soft gradient background */
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full screen height */
+  flex-direction: column;
+}
+
+/* Container for the upload section with card-like structure */
+.upload-container {
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  width: 400px; /* Width of the upload container */
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 30px;
+  transform: translateY(0); /* Initial position */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Hover effect for the upload container */
+.upload-container:hover {
+  transform: translateY(-15px); /* Lift effect */
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15); /* Bigger shadow on hover */
+}
+
+/* Header Styling */
+header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+h1 {
+  color: #4CAF50;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  animation: textAnimation 2s ease-in-out infinite;
+}
+
+/* Animation for header text */
+@keyframes textAnimation {
+  0% { color: #4CAF50; }
+  50% { color: #ff5722; }
+  100% { color: #4CAF50; }
+}
+
+/* Form styling */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+  gap: 20px;
+}
+
+input[type="file"] {
+  border: 2px solid #4CAF50;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 250px;
+  font-size: 16px;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+input[type="file"]:hover {
+  border-color: #45a049;
+  background-color: #f1f1f1;
+}
+
+button {
+  padding: 12px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 250px;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#feedback {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #ff5722;
+  width: 250px;
+}
+
+/* Image list styling */
+#image-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+/* Individual image card styling */
+.image-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Box shadow for card */
+  width: 180px; /* Width of the image card */
+  text-align: center;
+  padding: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Hover effect for image card */
+.image-card:hover {
+  transform: translateY(-5px); /* Lift effect */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+}
+
+.image-card img {
+  max-width: 100%;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Image card text */
+.image-card p {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Loading message */
+.loading {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff5722;
+  animation: loadingAnimation 2s infinite ease-in-out;
+}
+
+/* Loading animation */
+@keyframes loadingAnimation {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+/* Styling for cloud images section */
+#mega-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+#mega-images img {
+  border-radius: 8px;
+  max-width: 200px;
+  max-height: 150px;
+  object-fit: cover;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#mega-images img:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}

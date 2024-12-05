@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Upload</title>
+  <link rel="stylesheet" href="index.css">
+  <style>
+    /* CSS for displaying the image */
+    #mega-images img {
+      width: 100%;        /* Make the image take full width */
+      height: auto;       /* Maintain aspect ratio */
+      max-width: 100%;    /* Ensure the image does not exceed the container width */
+      border-radius: 8px; /* Optional: Round the corners of the image */
+      margin-bottom: 20px;/* Space between images */
+    }
+  </style>
+</head>
+<body>
+  <h1>Upload an Image</h1>
+  <form id="upload-form" enctype="multipart/form-data">
+    <input type="file" id="imgfile" name="imgfile" accept="image/*" required>
+    <button type="submit">Upload</button>
+  </form>
+  <div id="feedback"></div>
+  <h2>Uploaded Files</h2>
+  <div id="files"></div>
+  
+  <h2>Cloud Images</h2>
+  <div id="mega-images"></div>
+
+  <script>
+    const form = document.getElementById("upload-form");
+    const feedback = document.getElementById("feedback");
+    const files = document.getElementById("files");
+    const megaImages = document.getElementById("mega-images");
+
+    // Mega Share Link (ensure the Mega image URL is publicly accessible)
+    const megaShareLink = 'https://mega.nz/file/32BWHKQD';
+     // Replace with your actual share link
+    
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      feedback.textContent = "Uploading...";
+      try {
+        const response = await fetch("/upload", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (response.ok) {
+          feedback.textContent = "Upload successful!";
+          fetchFiles();
+        } else {
+          feedback.textContent = "Upload failed.";
+        }
+      } catch (err) {
+        feedback.textContent = "Error occurred.";
+      }
+    });
+
+    // Fetch and display uploaded files from the server
+    async function fetchFiles() {
+      try {
+        const response = await fetch("/upload");
+        const data = await response.json();
+
+        files.innerHTML = data
+          .map((file) => `<p>${file.name} (${file.size} bytes)</p>`)
+          .join("");
+      } catch {
+        files.textContent = "not loaded yet.";
+      }
+    }
+
+    // Display the image from Mega using the share link
+    function displayMegaImage() {
+      const imgElement = document.createElement('img');
+      imgElement.src = megaShareLink;  // Set the Mega share link as the image source
+      imgElement.alt = "Mega Image";
+      megaImages.appendChild(imgElement);  // Append the image to the mega-images section
+    }
+
+    // Call function to display Mega image on page load
+    displayMegaImage();
+
+    fetchFiles(); // Call this to fetch and display uploaded files
+  </script>
+</body>
+</html>
